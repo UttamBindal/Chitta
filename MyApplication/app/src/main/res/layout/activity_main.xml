@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/meditation"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="20dp"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/row_1"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+    <Button
+        android:id="@+id/buttonTakeTest"
+        android:layout_width="145dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:text="Take Test" />
+
+    <Button
+        android:id="@+id/buttonMeditate"
+        android:layout_width="145dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="match_parent"
+        android:text="Meditate" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/row_2"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/buttonTipsAndTricks"
+            android:layout_width="145dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:text="Tips &amp; Tricks" />
+
+        <Button
+            android:id="@+id/buttonAbout"
+            android:layout_width="145dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="match_parent"
+            android:text="About" />
+    </LinearLayout>
+
+</LinearLayout>
+</RelativeLayout>
+
+
