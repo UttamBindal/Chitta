@@ -1,14 +1,30 @@
 package com.example.mentalhealth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.android.gms.tasks.OnCompleteListener;
+
+import android.widget.ProgressBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.FirebaseApp;
+
+import java.util.Locale;
 
 public class MeditateActivity extends AppCompatActivity {
 
@@ -21,21 +37,47 @@ public class MeditateActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timerDuration = 0;
     private long highestTimer = 0;
+    private CircularProgressBar circularProgressBar;
+    private Handler handler;
+    private TextToSpeech textToSpeech;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meditate);
+        FirebaseApp.initializeApp(this);
 
         textViewHighestTimer = findViewById(R.id.textViewHighestTimer);
         editTextTimer = findViewById(R.id.editTextTimer);
         buttonStart = findViewById(R.id.buttonStart);
         textViewCountdown = findViewById(R.id.textViewCountdown);
         buttonGuidedMeditation = findViewById(R.id.buttonGuidedMeditation);
+        circularProgressBar = (CircularProgressBar) findViewById(R.id.timerProgress);
+
+        circularProgressBar.setProgress(0);
+        int colorInt = android.graphics.Color.parseColor("#ff8231");
+        circularProgressBar.setProgressColor(colorInt);
+
+
 
         // Fetch the highest timer from the database and display it
-        highestTimer = fetchHighestTimerFromDatabase();
-        textViewHighestTimer.setText("Highest Timer: " + highestTimer + " seconds");
+        fetchHighestTimerFromDatabase();
+        handler = new Handler();
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    // Set the language for text-to-speech
+                    int result = textToSpeech.setLanguage(Locale.US);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("MeditateActivity", "TextToSpeech initialization failed");
+                    }
+                } else {
+                    Log.e("MeditateActivity", "TextToSpeech initialization failed");
+                }
+            }
+        });
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +93,7 @@ public class MeditateActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void startTimer() {
         String timerValue = editTextTimer.getText().toString();
@@ -75,39 +118,104 @@ public class MeditateActivity extends AppCompatActivity {
 
         // Start the countdown timer
         timerDuration = inputTimer * 1000;
-        countDownTimer = new CountDownTimer(timerDuration, 1000) {
+        announceCountdownWithVoice(5, new Runnable() {
             @Override
-            public void onTick(long millisUntilFinished) {
-                long secondsRemaining = millisUntilFinished / 1000;
-                textViewCountdown.setText("Countdown: " + secondsRemaining + " seconds");
-            }
+            public void run() {
+                // Start the countdown timer after the announcement is completed
+                countDownTimer = new CountDownTimer(timerDuration, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        long secondsRemaining = millisUntilFinished / 1000;
+                        textViewCountdown.setText("Countdown: " + secondsRemaining + " seconds");
 
-            @Override
-            public void onFinish() {
-                textViewCountdown.setText("Countdown: 0 seconds");
-                showToast("Timer finished!");
-            }
-        };
+                        // Calculate the progress percentage
+                        int progress = (int) (((float) (timerDuration - millisUntilFinished) / timerDuration) * 100);
+                        circularProgressBar.setProgress(progress);
+                    }
 
-        countDownTimer.start();
+                    @Override
+                    public void onFinish() {
+                        textViewCountdown.setText("Countdown: 0 seconds");
+                        showToast("Timer finished!");
+                        circularProgressBar.setProgress(100);
+                    }
+                };
+                countDownTimer.start();
+            }
+        });
     }
+
+    private void announceCountdownWithVoice(long inputTimer, final Runnable callback) {
+        textToSpeech.speak("Start meditation in " + inputTimer + " seconds", TextToSpeech.QUEUE_FLUSH, null);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (long i = inputTimer; i >= 0; i--) {
+                    final long countdownValue = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (countdownValue > 0) {
+                                textToSpeech.speak(String.valueOf(countdownValue), TextToSpeech.QUEUE_ADD, null);
+                            }
+                            // Execute the callback after the announcement is completed
+                            else  {
+                                callback.run();
+                            }
+                        }
+                    }, (inputTimer - countdownValue) * 1000);
+                }
+            }
+        }, 5000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+    }
+
 
     private void startGuidedMeditation() {
-        // TODO: Implement the logic for starting the guided meditation
-        showToast("Start guided meditation");
+        Intent intent = new Intent(this, GuidedMeditate.class);
+        startActivity(intent);
+    }
+    public interface HighestTimerCallback {
+        void onHighestTimerFetched(long highestTimer);
     }
 
-    private long fetchHighestTimerFromDatabase() {
-        // TODO: Implement the logic to fetch the highest timer from the database
-        // You can use SQLite, Room, or any other database framework
-
-        // Dummy implementation, returning 0 for now
-        return 0;
+    private void fetchHighestTimerFromDatabase() {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("timers");
+        databaseRef.child("highestTimer").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Log.d("MeditateActivity", "onComplete: Highest timer fetched");
+                if (task.isSuccessful() && task.getResult() != null) {
+                    DataSnapshot dataSnapshot = task.getResult();
+                    if (dataSnapshot.exists()) {
+                        Long highestTimer = dataSnapshot.getValue(Long.class);
+                        if (highestTimer != null) {
+                            updateHighestTimerUI(highestTimer);
+                        }
+                    }
+                }
+            }
+        });
     }
+    private void updateHighestTimerUI(long highestTimer) {
+        this.highestTimer = highestTimer;
+        textViewHighestTimer.setText("Highest Timer: " + highestTimer + " seconds");
+    }
+
+
+
 
     private void saveHighestTimerToDatabase(long timer) {
-        // TODO: Implement the logic to save the highest timer to the database
-        // You can use SQLite, Room, or any other database framework
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("timers");
+        databaseRef.child("highestTimer").setValue(timer);
     }
 
     private void showToast(String message) {

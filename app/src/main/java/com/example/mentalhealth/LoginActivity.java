@@ -7,10 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.mentalhealth.DatabaseHelper;
-import com.example.mentalhealth.MainMenuActivity;
-import com.example.mentalhealth.SignUpActivity;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import androidx.annotation.NonNull;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,18 +21,17 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private Button buttonLogin;
     private TextView textViewSignUp;
-    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FirebaseApp.initializeApp(this);
 
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewSignUp = findViewById(R.id.textViewSignUp);
-        databaseHelper = new DatabaseHelper(this);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,13 +42,23 @@ public class LoginActivity extends AppCompatActivity {
                 if (username.isEmpty() || password.isEmpty()) {
                     showToast("Please enter username and password.");
                 } else {
-                    boolean isAuthenticated = databaseHelper.authenticateUser(username, password);
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                    if (isAuthenticated) {
-                        navigateToMainMenu();
-                    } else {
-                        showToast("Invalid username or password.");
-                    }
+                    // Sign in the user with email and password
+                    auth.signInWithEmailAndPassword(username, password)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // User authentication successful
+                                        FirebaseUser user = auth.getCurrentUser();
+                                        navigateToMainMenu();
+                                    } else {
+                                        // User authentication failed
+                                        showToast("Invalid username or password.");
+                                    }
+                                }
+                            });
                 }
             }
         });

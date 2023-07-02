@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_marginHorizontal="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/logo" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:maxLines="2"
+        android:layout_below="@+id/logo"
+        android:textColor="@color/orangeText"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:text="\t \t \t \t \t \t \t \t \t \t Boost Your Well-being: \n Explore, Meditate, and Learn with Our App"/>
 
     <EditText
         android:id="@+id/editTextNewUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/orangeText"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="30dp"
         android:hint="New Username" />
 
     <EditText
@@ -16,12 +38,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="New Password"
+        android:textColorHint="@color/orangeText"
+        android:layout_below="@+id/editTextNewUsername"
+        android:layout_marginVertical="30dp"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/buttonSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextNewPassword"
+        android:layout_centerHorizontal="true"
         android:text="Sign Up" />
 
-</LinearLayout>
+</RelativeLayout>

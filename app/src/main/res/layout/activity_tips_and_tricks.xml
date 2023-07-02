@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Tips and Tricks"
         android:textSize="20sp"
+        android:textColor="@color/orangeText"
         android:textStyle="bold" />
 
     <TextView
@@ -36,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Resources"
+        android:textColor="@color/orangeText"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp" />

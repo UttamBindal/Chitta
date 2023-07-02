@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "278773922762",
+    "firebase_url": "https://chitta-89ae8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "chitta-89ae8",
+    "storage_bucket": "chitta-89ae8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278773922762:android:e1fc65bb4376adeef12d33",
+        "android_client_info": {
+          "package_name": "com.example.mentalhealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278773922762-755okeutbb945hqodl4m6eob394mi4ot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA28urtwD447vttC1qqOMLVX-zIzC1leQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278773922762-755okeutbb945hqodl4m6eob394mi4ot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
