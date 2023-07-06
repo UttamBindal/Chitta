@@ -14,12 +14,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.FirebaseApp;
 
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText editTextNewUsername;
     private EditText editTextNewPassword;
     private Button buttonSignUp;
 
+    // Regular expression pattern for email validation
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (newUsername.isEmpty() || newPassword.isEmpty()) {
                     showToast("Please enter a new username and password.");
+                } else if (!isValidEmail(newUsername)) {
+                    showToast("Please enter a valid email address.");
+                } else if (!isValidPassword(newPassword)) {
+                    showToast("Please enter a valid password. Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character.");
                 } else {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -60,6 +70,16 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean isValidEmail(String email) {
+        return EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    private boolean isValidPassword(String password) {
+        // Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        return Pattern.matches(passwordPattern, password);
     }
 
     private void showToast(String message) {
