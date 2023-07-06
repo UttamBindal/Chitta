@@ -17,7 +17,8 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-
+          distribution: 'adopt'
+          
       - name: Grant Permission
         run: chmod +x gradlew
       - name: Assemble Debug
@@ -27,6 +28,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: apk
-          path: app/build/outputs/apk/debug/Chitta.apk
-
-
+          path: app/build/outputs/apk/debug/**.apk
