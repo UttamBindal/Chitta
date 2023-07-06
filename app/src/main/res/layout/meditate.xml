@@ -21,6 +21,8 @@
         android:id="@+id/editTextTimer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:autofillHints="timer"
+        android:inputType="number"
         android:layout_below="@+id/textViewHighestTimer"
         android:hint="@string/timer_field" />
 
