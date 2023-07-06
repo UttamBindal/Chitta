@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="Highest Timer: "
+        android:text="@string/highest_timer"
         android:layout_marginVertical="20dp"
         android:textSize="20sp"
         android:textColor="@color/orangeText"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/textViewHighestTimer"
-        android:hint="Set Timer (in seconds)" />
+        android:hint="@string/timer_field" />
 
     <Button
         android:id="@+id/buttonStart"
@@ -31,7 +31,7 @@
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="Start" />
+        android:text="@string/start" />
 
     <!--    <ProgressBar-->
 <!--        android:id="@+id/timerProgress"-->
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/timerProgress"
             android:layout_centerHorizontal="true"
-            android:text="Countdown Timer"
+            android:text="@string/countdown_timer"
             android:textColor="@color/orangeText"
             android:textSize="24sp" />
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewCountdown"
             android:layout_centerHorizontal="true"
-            android:text="Start Guided Meditation"
+            android:text="@string/start_guided_meditation"
             android:layout_marginTop="16dp" />
 
     </RelativeLayout>

@@ -9,7 +9,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About Page"
+        android:text="@string/about_page"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp" />
@@ -18,7 +18,7 @@
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This project is made in partial fulfillment of requirements of the sixth semester."
+        android:text="@string/Project_description1"
         android:textSize="16sp"
         android:layout_marginBottom="8dp" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/textViewAuthors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This project is made by Pragya Ravindrakumar Mugale, Shreyansh Gupta(1MV20CS105), and Uttam Bindal(1MV20CS120)."
+        android:text="@string/Credits"
         android:textSize="16sp" />
 
 </LinearLayout>

@@ -1,59 +1,398 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/grey"
+    android:padding="20dp">
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tips and Tricks"
-        android:textSize="20sp"
-        android:textColor="@color/orangeText"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewTip1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tip 1: Practice Mindfulness Meditation" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
 
-    <TextView
-        android:id="@+id/textViewTip2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tip 2: Engage in Regular Physical Exercise" />
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/textViewTip3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tip 3: Maintain a Healthy Diet" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
 
-    <TextView
-        android:id="@+id/textViewResourcesTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Resources"
-        android:textColor="@color/orangeText"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_gravity="center"
+                                android:text="@string/head1"
+                                android:textSize="16sp"
+                                android:textColor="@color/black" />
+                            <ImageView
+                                android:contentDescription="@string/tip1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tip1"
+                                android:scaleType="fitXY"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginVertical="20dp"/>
+                            <TextView
+                                android:layout_marginVertical="20dp"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="@string/tip1"
+                                android:textSize="16sp"
+                                android:textColor="@color/black" />
+                            <ImageView
+                                android:contentDescription="@string/tip2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tip2"
+                                android:scaleType="fitXY"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginVertical="20dp"/>
+                            <TextView
+                                android:layout_marginVertical="20dp"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="@string/tip2"
+                                android:textSize="16sp"
+                                android:textColor="@color/black" />
+                            <ImageView
+                                android:contentDescription="@string/tip3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tip3"
+                                android:scaleType="fitXY"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginVertical="20dp"/>
+                            <TextView
+                                android:layout_marginVertical="20dp"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="@string/tip3"
+                                android:textSize="16sp"
+                                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textViewResource1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Resource 1: OpenAI Mental Health Resources" />
 
-    <TextView
-        android:id="@+id/textViewResource2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Resource 2: National Alliance on Mental Illness" />
+                        </LinearLayout>
+                        </androidx.cardview.widget.CardView>
 
-    <!-- Add more resources as needed -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            android:layout_margin="10dp">
 
-</LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_gravity="center"
+                                    android:text="@string/head2"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip4"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip4"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip5"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip5"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip6"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip6"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            android:layout_margin="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_gravity="center"
+                                    android:text="@string/head3"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip7"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip7"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip8"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip8"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip9"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip9"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            android:layout_margin="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_gravity="center"
+                                    android:text="@string/head4"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip10"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip10"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip11"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip11"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip12"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip12"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            android:layout_margin="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_gravity="center"
+                                    android:text="@string/head5"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip13"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip13"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip14"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip14"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+                                <ImageView
+                                    android:contentDescription="@string/tip15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/tip15"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginVertical="20dp"/>
+                                <TextView
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/tip15"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+    </ScrollView>
