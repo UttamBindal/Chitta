@@ -166,7 +166,7 @@ public class MeditateActivity extends AppCompatActivity {
                     }, (inputTimer - countdownValue) * 1000);
                 }
             }
-        }, 5000);
+        }, 1000);
     }
 
     @Override
