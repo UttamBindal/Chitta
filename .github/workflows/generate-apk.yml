@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: checking out project
         uses: actions/checkout@v2
-
+        
+      - name: Grant Permission
+        run: chmod +x gradlew
       - name: Assemble Debug
         run: ./gradlew assembleDebug
 
