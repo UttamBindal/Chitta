@@ -19,6 +19,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.android.gms.tasks.OnCompleteListener;
 
 import android.widget.ProgressBar;
+import android.widget.ToggleButton;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,7 +32,7 @@ public class MeditateActivity extends AppCompatActivity {
 
     private TextView textViewHighestTimer;
     private EditText editTextTimer;
-    private Button buttonStart;
+    private ToggleButton buttonStart;
     private TextView textViewCountdown;
     private Button buttonGuidedMeditation;
 
@@ -41,6 +43,7 @@ public class MeditateActivity extends AppCompatActivity {
     private Handler handler;
     private TextToSpeech textToSpeech;
     private boolean is_using_timer=false;
+
 
 
     @Override
@@ -83,14 +86,19 @@ public class MeditateActivity extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!is_using_timer)
-                {
-                    is_using_timer=true;
-                    startTimer();
+                if(buttonStart.isChecked()) {
+                    if (!is_using_timer) {
+                        is_using_timer = true;
+                        startTimer();
+                        buttonStart.setEnabled(false);
+                    } else {
+                        showToast("Timer already Running!!");
+                    }
                 }
                 else
                 {
-                    showToast("Timer already Running!!");
+                    stopTimer();
+
                 }
             }
         });
@@ -159,6 +167,7 @@ public class MeditateActivity extends AppCompatActivity {
                         is_using_timer=false;
                     }
                 };
+                buttonStart.setEnabled(true);
                 countDownTimer.start();
             }
         });
@@ -191,6 +200,7 @@ public class MeditateActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stopTimer();
         if (textToSpeech != null) {
             textToSpeech.stop();
             textToSpeech.shutdown();
@@ -240,4 +250,16 @@ public class MeditateActivity extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+    private void stopTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+            countDownTimer = null;
+            is_using_timer = false;
+            textViewCountdown.setText("Countdown: 0 seconds");
+            circularProgressBar.setProgress(0);
+            textToSpeech.stop();
+
+        }
+    }
+
 }
