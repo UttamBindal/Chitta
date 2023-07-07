@@ -23,6 +23,7 @@
         android:textColor="@color/orangeText"
         android:textSize="20sp"
         android:layout_marginBottom="20dp"
+        android:gravity="center"
         android:text="@string/app_description"/>
 
     <EditText

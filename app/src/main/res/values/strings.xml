@@ -2,7 +2,7 @@
     <string name="app_name">Chitta</string>
     <string name="about_page">About Page</string>
     <string name="Project_description1">This project is made in partial fulfillment of requirements of the sixth semester.</string>
-    <string name="Credits">This project is made by Pragya Ravindrakumar Mugale, Shreyansh Gupta (1MV20CS105), and Uttam Bindal (1MV20CS120).</string>
+    <string name="Credits">This project is made by Pragya Ravindrakumar Mugale (1MV20CS077), Shreyansh Gupta (1MV20CS105), and Uttam Bindal (1MV20CS120).</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -12,11 +12,11 @@
     <string name="tips_amp_tricks"><![CDATA[Tips & Tricks]]></string>
     <string name="about">About</string>
     <string name="highest_timer">Highest Timer:</string>
-    <string name="timer_field">Set Timer (in seconds)</string>
+    <string name="timer_field">Set Timer (in Minutes)</string>
     <string name="start">Start</string>
     <string name="countdown_timer">Countdown Timer</string>
     <string name="start_guided_meditation">Start Guided Meditation</string>
-    <string name="app_description">\t \t \t \t \t \t \t \t \t \t Boost Your Well-being: \n Explore, Meditate, and Learn with Our App</string>
+    <string name="app_description">Boost Your Well-being: \n Explore, Meditate, and Learn with Our App</string>
     <string name="logo">logo</string>
     <string name="head1">Managing Academic Stress:</string>
     <string name="tip1">Break tasks into smaller, manageable chunks. This will help you feel less overwhelmed and more in control.</string>

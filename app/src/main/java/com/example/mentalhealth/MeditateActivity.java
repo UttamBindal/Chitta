@@ -102,8 +102,16 @@ public class MeditateActivity extends AppCompatActivity {
             showToast("Please enter a timer value.");
             return;
         }
-
-        long inputTimer = Long.parseLong(timerValue);
+        long inputTimer=0;
+        try
+        {
+            inputTimer = Long.parseLong(timerValue);
+        }
+        catch (Exception e)
+        {
+            showToast(e.getMessage());
+            editTextTimer.setText("0");
+        }
         if (inputTimer <= 0) {
             showToast("Please enter a valid timer value.");
             return;
@@ -113,11 +121,11 @@ public class MeditateActivity extends AppCompatActivity {
         if (inputTimer > highestTimer) {
             highestTimer = inputTimer;
             saveHighestTimerToDatabase(highestTimer);
-            textViewHighestTimer.setText("Highest Timer: " + highestTimer + " seconds");
+            textViewHighestTimer.setText("Highest Timer: " + highestTimer + " minutes");
         }
 
         // Start the countdown timer
-        timerDuration = inputTimer * 1000;
+        timerDuration = inputTimer * 1000 * 60;
         announceCountdownWithVoice(5, new Runnable() {
             @Override
             public void run() {
