@@ -40,6 +40,7 @@ public class MeditateActivity extends AppCompatActivity {
     private CircularProgressBar circularProgressBar;
     private Handler handler;
     private TextToSpeech textToSpeech;
+    private boolean is_using_timer=false;
 
 
     @Override
@@ -82,7 +83,15 @@ public class MeditateActivity extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startTimer();
+                if(!is_using_timer)
+                {
+                    is_using_timer=true;
+                    startTimer();
+                }
+                else
+                {
+                    showToast("Timer already Running!!");
+                }
             }
         });
 
@@ -144,8 +153,10 @@ public class MeditateActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         textViewCountdown.setText("Countdown: 0 seconds");
-                        showToast("Timer finished!");
+                        textToSpeech.speak("Timer Finished", TextToSpeech.QUEUE_ADD, null);
+                        showToast("Timer Finished!");
                         circularProgressBar.setProgress(100);
+                        is_using_timer=false;
                     }
                 };
                 countDownTimer.start();
@@ -215,7 +226,7 @@ public class MeditateActivity extends AppCompatActivity {
     }
     private void updateHighestTimerUI(long highestTimer) {
         this.highestTimer = highestTimer;
-        textViewHighestTimer.setText("Highest Timer: " + highestTimer + " seconds");
+        textViewHighestTimer.setText("Highest Timer: " + highestTimer + " minutes");
     }
 
 
