@@ -18,13 +18,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:layout_centerHorizontal="true"
-        android:maxLines="2"
+        android:maxLines="3"
         android:layout_below="@+id/logo"
         android:textColor="@color/orangeText"
         android:textSize="20sp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="@string/app_description"/>
+
+
 
     <EditText
         android:id="@+id/editTextNewUsername"
